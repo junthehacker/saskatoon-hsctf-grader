@@ -1,8 +1,12 @@
 <?php
   include "include/user_status.php";
+  include "include/databaseconnection.php";
+  include "include/contest.php";
   date_default_timezone_set('Canada/Saskatchewan');
   //We read all data here
   $title = "Saskatoon HSCTF Online Grader";
+  $dbConnection = new DatabaseConnection($blogDatabaseHost,$blogDatabaseUsername,$blogDatabasePassword,$blogDatabaseName);
+  $problems = getAllProblems($dbConnection);
 
   if($userLoggedin){
     if(!$_GET["page"]) {
@@ -17,8 +21,16 @@
     } else if ($_GET["page"] == "admin") {
       $title = "Saskatoon HSCTF - Admin";
       $bodyPath = "parts/admin.php";
+      //As long as current page is admin page, we get all the problems
+
       if(!$_GET["tab"]){
         $adminBodyPath = "parts/admin/main.php";
+      } else if ($_GET["tab"] == "problems"){
+        $adminBodyPath = "parts/admin/problems.php";
+      } else if ($_GET["tab"] == "newproblem"){
+        $adminBodyPath = "parts/admin/new_problem.php";
+      } else if ($_GET["tab"] == "editproblem"){
+        $adminBodyPath = "parts/admin/edit_problem.php";
       }
     }
   } else {

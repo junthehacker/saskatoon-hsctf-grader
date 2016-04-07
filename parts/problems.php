@@ -15,41 +15,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td><a href="?page=problemview&id=1">Comment Fever [Web]</a></td>
-        <td><span class="label label-warning">Unsolved</span></td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="?page=problemview&id=1">Heartbleed [Web]</a></td>
-        <td><span class="label label-warning">Unsolved</span></td>
-        <td>40</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td><a href="?page=problemview&id=1">Ceaser [Reverse Engineering]</a></td>
-        <td><span class="label label-success">Solved</span></td>
-        <td>7</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td><a href="?page=problemview&id=1">Gopple Maps [Recon]</a></td>
-        <td><span class="label label-warning">Unsolved</span></td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td><a href="?page=problemview&id=1">Desrever [Recon]</a></td>
-        <td><span class="label label-warning">Unsolved</span></td>
-        <td>10</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td><a href="?page=problemview&id=1">SQL Injection [Web]</a></td>
-        <td><span class="label label-warning">Unsolved</span></td>
-        <td>10</td>
-      </tr>
+      <?php if (empty($problems)){ ?>
+        <tr>
+          <td colspan="3">No problems found...</td>
+        </tr>
+      <?php } else { ?>
+        <?php foreach ($problems as $problem){ ?>
+          <tr>
+            <td><?php echo $problem["id"]; ?></td>
+            <td><a href="?page=problemview&id=<?php echo $problem["id"]; ?>"><?php echo $problem["category"] . " " . $problem["title"]; ?></a></td>
+            <td><span class="label label-warning">Unsolved</span></td>
+            <td><?php echo $problem["weight"]; ?></td>
+          </tr>
+        <?php } ?>
+      <?php } ?>
     </tbody>
   </table>
