@@ -3,7 +3,7 @@
     <ul class="nav navbar-nav">
       <li role="presentation"><a href="?page=admin&tab=">Overview</a></li>
       <li role="presentation"><a href="?page=admin&tab=problems">Problems</a></li>
-      <li role="presentation"><a href="#">Global</a></li>
+      <li role="presentation"><a href="?page=admin&tab=global">Global</a></li>
     </ul>
   </div>
   <?php

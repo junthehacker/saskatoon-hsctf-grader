@@ -7,6 +7,7 @@
   $title = "Saskatoon HSCTF Online Grader";
   $dbConnection = new DatabaseConnection($blogDatabaseHost,$blogDatabaseUsername,$blogDatabasePassword,$blogDatabaseName);
   $problems = getAllProblems($dbConnection);
+  $contestStatus = json_decode(file_get_contents("status.json"),true);
 
   if($userLoggedin){
     if(!$_GET["page"]) {
@@ -31,6 +32,8 @@
         $adminBodyPath = "parts/admin/new_problem.php";
       } else if ($_GET["tab"] == "editproblem"){
         $adminBodyPath = "parts/admin/edit_problem.php";
+      } else if ($_GET["tab"] == "global"){
+        $adminBodyPath = "parts/admin/global.php";
       }
     }
   } else {
@@ -44,7 +47,7 @@
     <link href="less/main.less" type="text/less" rel="stylesheet" />
     <link href="https://ssl.jackzh.com/file/css/font-awesome-4.4.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
     <link href="https://ssl.jackzh.com/file/css/bootstrap/bootstrap-3-3-6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="https://ssl.jackzh.com/file/css/bootstrap/theme/superhero/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="https://ssl.jackzh.com/file/css/bootstrap/theme/flaty/bootstrap.css" type="text/css" rel="stylesheet" />
     <script src="https://ssl.jackzh.com/file/js/less-js/less.min.js"></script>
     <script src="https://ssl.jackzh.com/file/js/jquery/jquery-2.2.2.min.js"></script>
     <script src="https://ssl.jackzh.com/file/css/bootstrap/bootstrap-3-3-6/js/bootstrap.min.js"></script>

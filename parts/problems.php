@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <?php if (empty($problems)){ ?>
+      <?php if (empty($problems) || ($contestStatus["status"] == "closed" && $userInfo["group"] == $usernamePrefix . "competitor")){ ?>
         <tr>
           <td colspan="3">No problems found...</td>
         </tr>

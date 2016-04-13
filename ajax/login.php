@@ -8,7 +8,7 @@
   $result = $client->authorizeUser($_POST["username"],$_POST["password"]);
   if($result["status"] == "success"){
     $userInfo = $client->authorizeToken($_POST["username"],$result["data"]["token_body"]);
-    if($userInfo["data"]["group"] != "saskatoonhsctf-admin" && $userInfo["data"]["group"] != "saskatoonhsctf-competitor") {
+    if($userInfo["data"]["group"] != $usernamePrefix . "admin" && $userInfo["data"]["group"] != $usernamePrefix . "competitor") {
       $resultArray["data"]= "namespace error";
     } else {
       $resultArray["status"]="success";

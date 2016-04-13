@@ -8,7 +8,7 @@
 
   $result = $client->authorizeToken($_COOKIE["skhsctf-un"],$_COOKIE["skhsctf-tk"]);
   if($result["status"] == "success"){
-    if($result["data"]["group"] == "saskatoonhsctf-admin" || $result["data"]["group"] == "saskatoonhsctf-competitor"){ //Only login if user is under sasktoonhsctf namespace
+    if($result["data"]["group"] == $usernamePrefix . "admin" || $result["data"]["group"] == $usernamePrefix . "competitor"){ //Only login if user is under sasktoonhsctf namespace
       $userLoggedin = true;
       $userInfo = $result["data"];
     }

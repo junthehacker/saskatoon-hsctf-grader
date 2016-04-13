@@ -1,6 +1,12 @@
 <h1><i class="fa fa-th"></i> Contest Overview &amp; Statistics</h1>
 <br>
-<div class="label label-default huge label-inline-block">1:20:49 Left</div>
+<div class="label label-default huge label-inline-block">
+  <?php if($contestStatus["status"] == "closed"){ ?>
+    Contest Closed
+  <?php } else { ?>
+    <span id="time-remaining-label"></span> Left
+  <?php } ?>
+</div>
 <br><br>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -45,3 +51,14 @@
     </table>
   </div>
 </div>
+
+<script type="text/javascript">
+  <?php if($contestStatus["status"] == "open"){ ?>
+    var secondsLeft = <?php echo $contestStatus["duration"] - time() + $contestStatus["begin-time"]; ?>;
+    $("#time-remaining-label").html(secondsLeft.toString().toHHMMSS());
+    setInterval(function(){
+      secondsLeft -= 1;
+      $("#time-remaining-label").html(secondsLeft.toString().toHHMMSS());
+    },1000);
+  <?php } ?>
+</script>
