@@ -1,4 +1,5 @@
 <?php
+  include "include/util.php";
   include "include/user_status.php";
   include "include/databaseconnection.php";
   include "include/contest.php";

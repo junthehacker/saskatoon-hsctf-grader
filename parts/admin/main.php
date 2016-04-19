@@ -22,31 +22,13 @@
         </tr>
       </thead>
       <tbody>
+        <?php $i = 0; foreach($users as $user) { ?>
         <tr>
-          <td>1</td>
-          <td>Vulputate Sollicitudin</td>
-          <td>10</td>
+          <td><?php echo $i; ?></td>
+          <td><?php echo $user["username"]; ?></td>
+          <td><?php echo $user["points"]; ?></td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Fermentum Adipiscing Tellus</td>
-          <td>40</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Magna</td>
-          <td>27</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Nullam Fringilla</td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Sit Magna</td>
-          <td>49</td>
-        </tr>
+        <?php $i++; } ?>
       </tbody>
     </table>
   </div>

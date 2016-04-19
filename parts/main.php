@@ -1,4 +1,5 @@
 <div class="container">
+  <h2>Welcome to Saskatoon HSCTF Contest System</h2>
   <h1><i class="fa fa-tachometer"></i> Dashboard</h1>
   <br><br>
   <?php if ($contestStatus["status"] == "closed") { ?>
@@ -17,7 +18,15 @@
               <i class="fa fa-flag fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge">0</div>
+              <div class="huge">
+                <?php
+                  if(empty($userInfo["problems_solved"])){
+                    echo 0;
+                  } else {
+                    echo max(array_keys($userInfo["problems_solved"])) + 1;
+                  }
+                ?>
+              </div>
               <div>Problems Solved</div>
             </div>
           </div>
@@ -33,7 +42,7 @@
               <i class="fa fa-star fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge">0</div>
+              <div class="huge"><?php echo $userInfo["points"]; ?></div>
               <div>Total Score</div>
             </div>
           </div>

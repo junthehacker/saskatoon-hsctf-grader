@@ -21,5 +21,25 @@
       <label for="flag-body-inpu">Flag</label>
       <input type="email" class="form-control" id="flag-body-input" placeholder="Flag body">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" onclick="submitFlag();" class="btn btn-default">Submit</button>
 <?php } ?>
+<script type="text/javascript">
+  function submitFlag(){
+    $.ajax({
+      url:"ajax/flag_submission.php",
+      data:{
+        id:<?php echo $problem["id"]; ?>,
+        flag:$("#flag-body-input").val()
+      },
+      type:"POST",
+      success:function(data){
+        if(data == "success"){
+          alert("Flag submission successful\nYou have solved the problem");
+          window.location = "?page=problems";
+        } else {
+          alert(data);
+        }
+      }
+    })
+  }
+</script>
