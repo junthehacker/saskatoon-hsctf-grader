@@ -6,7 +6,7 @@
   $dbConnection = new DatabaseConnection($blogDatabaseHost,$blogDatabaseUsername,$blogDatabasePassword,$blogDatabaseName);
   include "../include/contest.php";
   $contestStatus = json_decode(file_get_contents("../status.json"),true);
-  if($contestStatus["status"] != "open"){
+  if($contestStatus["status"] != "open" || $contestStatus["duration"] - time() + $contestStatus["begin-time"] <= 0){
     echo "flag submission closed";
     exit;
   }
