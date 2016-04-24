@@ -18,23 +18,39 @@
       $title = "Saskatoon HSCTF Online Grader - Problems";
       $bodyPath = "parts/problems.php";
     } else if ($_GET["page"] == "problemview") {
-      $title = "Saskatoon HSCTF Online Grader - [Problem Name Here]";
-      $bodyPath = "parts/problemviewer.php";
+      //First job here is to find the problem in array
+      $problemData = array();
+      foreach($problems as $problem){
+        if($problem["id"] == $_GET["id"]){
+          $problemData = $problem;
+          break;
+        }
+      }
+      if($contestStatus["status"] == "closed" && $userInfo["group"] == $usernamePrefix . "competitor"){
+        $title = "Saskatoon HSCTF Online Grader - 404";
+        $bodyPath = "parts/404err.php";
+      } else {
+        $title = "Saskatoon HSCTF Online Grader - " . $problemData["title"];
+        $bodyPath = "parts/problemviewer.php";
+      }
     } else if ($_GET["page"] == "admin") {
-      $title = "Saskatoon HSCTF - Admin";
-      $bodyPath = "parts/admin.php";
-      //As long as current page is admin page, we get all the problems
-
-      if(!$_GET["tab"]){
-        $adminBodyPath = "parts/admin/main.php";
-      } else if ($_GET["tab"] == "problems"){
-        $adminBodyPath = "parts/admin/problems.php";
-      } else if ($_GET["tab"] == "newproblem"){
-        $adminBodyPath = "parts/admin/new_problem.php";
-      } else if ($_GET["tab"] == "editproblem"){
-        $adminBodyPath = "parts/admin/edit_problem.php";
-      } else if ($_GET["tab"] == "global"){
-        $adminBodyPath = "parts/admin/global.php";
+      if($userInfo["group"] == "saskatoonhsctf-admin"){
+        $title = "Saskatoon HSCTF - Admin";
+        $bodyPath = "parts/admin.php";
+        if(!$_GET["tab"]){
+          $adminBodyPath = "parts/admin/main.php";
+        } else if ($_GET["tab"] == "problems"){
+          $adminBodyPath = "parts/admin/problems.php";
+        } else if ($_GET["tab"] == "newproblem"){
+          $adminBodyPath = "parts/admin/new_problem.php";
+        } else if ($_GET["tab"] == "editproblem"){
+          $adminBodyPath = "parts/admin/edit_problem.php";
+        } else if ($_GET["tab"] == "global"){
+          $adminBodyPath = "parts/admin/global.php";
+        }
+      } else {
+        $title = "Saskatoon HSCTF Online Grader - 404";
+        $bodyPath = "parts/404err.php";
       }
     }
   } else {
