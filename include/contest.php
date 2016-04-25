@@ -1,6 +1,6 @@
 <?php
   function getAllProblems($dbConnection){
-    $stmt = $dbConnection->mysqliObject->prepare("SELECT * FROM saskatoonhsctf_problems");
+    $stmt = $dbConnection->mysqliObject->prepare("SELECT * FROM saskatoonhsctf_problems ORDER BY weight");
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($resultId,$resultTitle,$resultCategory,$resultDescription,$resultWeight,$resultFlag);
