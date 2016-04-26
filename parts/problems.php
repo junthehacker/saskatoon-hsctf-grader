@@ -28,7 +28,6 @@
   <table class="table table-hover problems-table">
     <thead>
       <tr>
-        <th>#id</th>
         <th>Name</th>
         <th>Status</th>
         <th>Points</th>
@@ -41,13 +40,7 @@
         </tr>
       <?php } else { ?>
         <?php foreach ($problems as $problem){ ?>
-          <?php
-            if(arrayContains($userInfo["problems_solved"],$problem["id"])){
-
-            }
-          ?>
           <tr>
-            <td><?php echo $problem["id"]; ?></td>
             <td><a href="?page=problemview&id=<?php echo $problem["id"]; ?>"><?php echo $problem["category"] . " " . $problem["title"]; ?></a></td>
             <td>
               <?php if(arrayContains($userInfo["problems_solved"],$problem["id"])){ ?>
