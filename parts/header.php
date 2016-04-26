@@ -29,6 +29,9 @@
       if($contestStatus["status"] == "closed" && $userInfo["group"] == $usernamePrefix . "competitor"){
         $title = "Saskatoon HSCTF Online Grader - 404";
         $bodyPath = "parts/404err.php";
+      } else if (!$problemData) {
+        $title = "Saskatoon HSCTF Online Grader - 404";
+        $bodyPath = "parts/404err.php";
       } else {
         $title = "Saskatoon HSCTF Online Grader - " . $problemData["title"];
         $bodyPath = "parts/problemviewer.php";
