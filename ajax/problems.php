@@ -14,7 +14,7 @@
       echo "problem not found";
       exit;
     } else {
-      $problem = getProblem($dbConnection,$_POST["id"]);
+      $problem = getProblem($dbConnection,$_GET["id"]);
       if($problem){
         $problem["flag"] = md5($problem["flag"]);
         echo json_encode($problem);
